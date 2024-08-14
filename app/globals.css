@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 76, 58, 50; /* retroBrown: #4C3A32 */
+  --background-start-rgb: 245, 215, 110; /* retroYellow: #F5D76E */
+  --background-end-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 245, 215, 110; /* retroYellow: #F5D76E */
+    --background-start-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
+    --background-end-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
+  }
+}
+
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  display: flex; /* Use flexbox on body */
+  flex-direction: column; /* Align content vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
