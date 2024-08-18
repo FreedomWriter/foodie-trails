@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.1",
+    "@headlessui/react": "^2.1.2",
     "@react-google-maps/api": "^2.19.3",
+    "classcat": "^5.0.5",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"

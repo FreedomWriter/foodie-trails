@@ -2,40 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 76, 58, 50; /* retroBrown: #4C3A32 */
-  --background-start-rgb: 245, 215, 110; /* retroYellow: #F5D76E */
-  --background-end-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
+/* Body styles */
+body {
+  @apply m-0 p-0 min-h-screen flex flex-col items-center justify-center bg-background text-primary font-dos;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 245, 215, 110; /* retroYellow: #F5D76E */
-    --background-start-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
-    --background-end-rgb: 59, 83, 35; /* retroGreen: #3B5323 */
+/* Light mode styles */
+@media (prefers-color-scheme: light) {
+  body {
+    @apply bg-lightBackground text-lightForeground;
   }
 }
 
-body {
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  min-height: 100vh; /* Ensure body takes full viewport height */
-  display: flex; /* Use flexbox on body */
-  flex-direction: column; /* Align content vertically */
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
-}
-
+/* Custom utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* DOS-style borders */
+  .border-dos {
+    @apply border border-highlight;
+  }
+
+  /* DOS-style buttons */
+  .button-dos {
+    @apply bg-background text-primary border border-highlight px-2 py-1 font-dos text-base cursor-pointer hover:bg-primary hover:text-background;
+  }
+
+  /* Light mode button */
+  @media (prefers-color-scheme: light) {
+    .button-dos {
+      @apply bg-lightBackground text-lightForeground border-lightHighlight;
+    }
+  }
+
+  /* Responsive font size adjustments */
+  @media (max-width: 640px) {
+    .font-dos {
+      @apply text-sm; /* Smaller font size for small screens */
+    }
+  }
+
+  /* Car animation container for responsiveness */
+  .car-animation {
+    @apply w-full h-16 sm:h-12 md:h-16; /* Responsive height */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .car {
+    position: absolute;
+    top: 0;
+    left: -6rem; /* Start position off-screen */
+    white-space: nowrap; /* Ensure no line breaks */
+    animation: drive 8s linear infinite; /* Animation settings */
+  }
+
+  @keyframes drive {
+    0% {
+      left: -6rem;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Blinking cursor */
+  .blinking-cursor::after {
+    content: '|';
+    @apply animate-blink text-primary;
+  }
+
+  /* Responsive text alignment and sizing */
+  .text-responsive {
+    @apply text-center md:text-left lg:text-xl;
+  }
+
+  /* Responsive padding and margins */
+  .responsive-padding {
+    @apply p-4 sm:p-6 md:p-8 lg:p-12;
+  }
+  /* Info Window Styles */
+  .info-window {
+    background-color: #000000; /* Black background for retro theme */
+    color: #00ff00; /* Bright green text */
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 4px 4px 0px #808080; /* Retro-style shadow */
+    max-width: 250px;
+  }
+
+  .info-window-title {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .info-window-address,
+  .info-window-status,
+  .info-window-hours,
+  .info-window-rating {
+    font-size: 1rem;
+    margin: 4px 0;
+  }
+
+  .info-window-photo {
+    width: 100%; /* Make the image take the full width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 200px; /* Ensure the image doesn't grow too wide */
+    max-height: 150px; /* Ensure the image doesn't grow too tall */
+    margin-top: 8px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0px #808080; /* Retro-style shadow for the image */
+  }
+
+  .primary-button {
+    background-color: #00ff00; /* Replace with your primary color */
+    color: #000000; /* Text color */
+    padding: 8px 16px;
+    border: 2px solid #808080; /* Border color */
+    box-shadow: 4px 4px 0px #808080;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .primary-button:hover {
+    background-color: #000000; /* Inverse colors on hover */
+    color: #00ff00;
   }
 }

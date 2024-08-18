@@ -1,21 +1,13 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import './globals.css';
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { Typography } from '@/typography';
+
+export default function Home(props) {
+  console.log({ props });
   return (
-    <html lang='en'>
-      <body>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-        {children}
-      </body>
-    </html>
+    <div>
+      <div>
+        <Typography variant='h1'>Welcome to Foodie Trails</Typography>
+      </div>
+    </div>
   );
 }
