@@ -1,19 +1,17 @@
 'use client';
 
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Navbar } from './nav';
 import { Footer } from './footer';
 import Script from 'next/script';
-
-interface Props {
-  appearance: any;
-}
+import { appearance } from '@utils/clerk-styles';
 
 export default function ClientLayout({
   children,
-  appearance,
-}: PropsWithChildren<Props>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <ClerkProvider appearance={appearance}>
       {/* Add the Google Maps script in the top-level component */}

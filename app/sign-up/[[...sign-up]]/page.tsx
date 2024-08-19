@@ -1,5 +1,3 @@
-import { SignUp } from '@clerk/nextjs';
-
 export default function Page() {
   return (
     <div className='flex items-center justify-center bg-retroGreen'>
@@ -7,7 +5,9 @@ export default function Page() {
         <h1 className='text-4xl font-pixel text-retroBrown mb-4 text-center'>
           Join the Trail
         </h1>
-        <SignUp />
+        <div>
+          <p>TODO: magic sign up - don't forget the middleware!</p>
+        </div>
       </div>
     </div>
   );
