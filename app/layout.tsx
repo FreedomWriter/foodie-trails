@@ -83,7 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='min-h-screen flex flex-col font-dos bg-[rgb(0,0,0)] text-[rgb(0,255,0)] overflow-auto'>
+      <body>
         <ClientLayout appearance={appearance}>{children}</ClientLayout>
       </body>
     </html>

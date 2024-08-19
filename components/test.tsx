@@ -7,24 +7,18 @@ import { EmptyState } from './empty-state';
 import { Typography } from './typography';
 import { Input } from './input';
 import { Loader } from './loader';
-import { MapContainer } from './map-container';
+import { Map } from './map';
 
 export const Test = () => {
   const [state, setState] = React.useState({ isRetromode: false });
   return (
     <div className='flex flex-col gap-4'>
-      <h1 className='text-4xl font-pixel mb-4 text-center'>Test</h1>{' '}
-      <SecondaryButton
-        label={state.isRetromode ? 'Disable Retro Mode' : 'Enable Retro Mode'}
-        onClick={() =>
-          setState((prev) => ({ ...prev, isRetromode: !prev.isRetromode }))
-        }
-      />
-      <MapContainer retroMode={state.isRetromode}>
+      <h1 className='text-4xl font-pixel mb-4 text-center'>Test</h1>
+      <Map>
         <div className='absolute top-4 left-4 p-2 bg-background border-2 border-highlight rounded-retro'>
           <p className='text-primary font-dos'>Retro Map Mode Enabled</p>
         </div>
-      </MapContainer>
+      </Map>
       <PrimaryButton
         label='Primary Button'
         onClick={() => console.log('Primary Clicked')}

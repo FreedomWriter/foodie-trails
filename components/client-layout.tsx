@@ -21,10 +21,11 @@ export default function ClientLayout({
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
         strategy='beforeInteractive' // Ensures the script is loaded early
       />
-      {/* No need for <html> and <body> tags here */}
-      <div className='min-h-screen flex flex-col font-dos overflow-auto w-full'>
+      {/* Layout container */}
+      <div className='min-h-screen flex flex-col font-dos overflow-hidden w-full'>
         <Navbar />
-        <main className='flex-grow flex items-center justify-center'>
+        {/* Main content area with calculated max-height */}
+        <main className='flex-grow flex flex-col items-center justify-center max-h-[calc(100vh-8rem)] p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 overflow-hidden'>
           {children}
         </main>
         <Footer />
