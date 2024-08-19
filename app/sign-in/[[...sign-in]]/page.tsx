@@ -1,9 +1,7 @@
-import { SignIn } from '@clerk/nextjs';
-
 export default function Page() {
   return (
     <div>
-      <SignIn path='/sign-in' routing='path' />
+      <p>TODO: magic sign in - don't forget the middleware!</p>
     </div>
   );
 }
