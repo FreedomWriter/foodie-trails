@@ -16,7 +16,9 @@ export interface Option {
 }
 
 export const HomePage = () => {
-  const [questionIdToFetch, setQuestionIdToFetch] = React.useState(2);
+  const [questionIdToFetch, setQuestionIdToFetch] = React.useState(1);
+  const [include, setInclude] = React.useState<string[]>([]);
+  const [exclude, setExclude] = React.useState<string[]>([]);
   const router = useRouter();
 
   const discoveryPrompt = useQuery(api.discoveryPrompts.get, {
@@ -30,13 +32,34 @@ export const HomePage = () => {
   const onSelect = (option: Option) => {
     console.log(option);
 
-    if (questionIdToFetch === 28 && option.value === 'findDestination') {
-      // Construct the query for the Google Places API
-      const includes = option.include ? option.include.join(',') : '';
-      const excludes = option.exclude ? option.exclude.join(',') : '';
+    // Update the include and exclude lists based on the selected option
+    if (option.include) {
+      setInclude((prevInclude) => [
+        ...prevInclude,
+        ...option.include!.filter((item) => !prevInclude.includes(item)),
+      ]);
+    }
 
+    if (option.exclude) {
+      setExclude((prevExclude) => [
+        ...prevExclude,
+        ...option.exclude!.filter((item) => !prevExclude.includes(item)),
+      ]);
+    }
+
+    if (questionIdToFetch === 8 && option.value === 'findDestination') {
+      // Construct the query for the Google Places API with accumulated includes and excludes
+      const includes = include.join(',');
+      const excludes = exclude.join(',');
+      let result = `/restaurants`;
+      if (includes) {
+        result += `?include=${includes}`;
+      }
+      if (excludes) {
+        result += `${includes ? '&' : '?'}exclude=${excludes}`;
+      }
       // Navigate to the restaurants page with the query parameters
-      router.push(`/restaurants?include=${includes}&exclude=${excludes}`);
+      router.push(result);
     } else if (questionIdToFetch === 28) {
       // If the user selects "No, I Need to Review", restart the flow
       setQuestionIdToFetch(2);
