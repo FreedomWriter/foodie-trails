@@ -1,5 +1,6 @@
+import { HomePage } from '@/home-page';
 import './globals.css';
 
 export default function Home() {
-  return <div>map goes here</div>;
+  return <HomePage />;
 }

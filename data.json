@@ -1,429 +1,636 @@
-{
-  "questions": [
-    {
-      "questionId": 1,
-      "question": "Are you dining alone or with a group?",
-      "dialogue": "The journey is easier with companions, but solitude has its own rewards. Will you be dining alone or with a group?",
-      "options": {
-        "Dining Alone": {
-          "include": ["diningAlone"],
-          "nextQuestionConditions": {
-            "skipQuestions": ["goodForGroups"]
-          }
-        },
-        "With a Group": {
-          "include": ["diningWithGroup"],
-          "nextQuestionConditions": {
-            "showNextQuestions": ["goodForGroups"]
-          }
-        }
+[
+  {
+    "questionId": 2,
+    "question": "Will You Be Gathering Provisions on the Move or Settling Down?",
+    "dialogue": "The trail is long and weary, traveler. Will you grab your provisions and keep moving, or rest at an inn for a while?",
+    "tooltip": "Choose between grabbing provisions on the move or settling down for a meal.",
+    "options": [
+      {
+        "label": "Grab and Go (Takeout or Delivery)",
+        "value": "grabAndGo",
+        "include": ["curbsidePickup", "delivery", "takeout"],
+        "questionsToSkip": [4, 6, 9],
+        "nextDiscoveryPrompt": 18
+      },
+      {
+        "label": "Rest at the Inn (Dine-In)",
+        "value": "restAtInn",
+        "include": ["dineIn"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 3
+      },
+      {
+        "label": "I am Open to Either",
+        "value": "openToEither",
+        "include": ["curbsidePickup", "delivery", "takeout", "dineIn"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 3
       }
-    },
-    {
-      "questionId": 2,
-      "question": "Will You Be Gathering Provisions on the Move or Settling Down?",
-      "dialogue": "The trail is long and weary, traveler. Will you grab your provisions and keep moving, or rest at an inn for a while?",
-      "options": {
-        "Grab and Go (Takeout or Delivery)": {
-          "include": ["curbsidePickup", "delivery", "takeout"],
-          "nextQuestionConditions": {
-            "showNextQuestions": ["delivery", "takeout"]
-          }
-        },
-        "Rest at the Inn (Dine-In)": {
-          "include": ["dineIn"],
-          "nextQuestionConditions": {
-            "skipQuestions": ["accessibilityOptions", "allowsDogs"]
-          }
-        },
-        "I’m Open to Either": {
-          "include": ["curbsidePickup", "delivery", "takeout", "dineIn"],
-          "nextQuestionConditions": { "showAll": true }
-        }
+    ]
+  },
+  {
+    "questionId": 18,
+    "question": "What Time of Day Is It on the Trail?",
+    "dialogue": "The time of day dictates your next meal. Is it morning, noon, or night?",
+    "tooltip": "Select the time of day to determine your meal options.",
+    "options": [
+      {
+        "label": "Morning-Time for Breakfast",
+        "value": "breakfastTime",
+        "include": ["breakfastRestaurant", "cafe", "brunchRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 2
+      },
+      {
+        "label": "Midday or Evening-Time for a Hearty Meal",
+        "value": "heartyMeal",
+        "include": ["allRestaurants"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 2
+      },
+      {
+        "label": "Night-A Late Snack Before Rest",
+        "value": "lateSnack",
+        "include": ["fastFoodRestaurant", "diner", "bakery"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 2
       }
-    },
-    {
-      "questionId": 3,
-      "question": "The Sky Looks Ominous—Will You Seek Shelter?",
-      "dialogue": "A storm may be brewing. Would you prefer to dine indoors or take your chances outside?",
-      "conditions": ["rainyWeather"],
-      "options": {
-        "Indoors, Please": {
-          "include": ["indoorSeating"],
-          "exclude": ["outdoorSeating"]
-        },
-        "I Don’t Mind the Rain": {
-          "include": ["outdoorSeating"],
-          "exclude": ["indoorSeating"]
-        }
+    ]
+  },
+  {
+    "questionId": 3,
+    "question": "The Sky Looks Ominous-Will You Seek Shelter?",
+    "dialogue": "A storm may be brewing. Would you prefer to dine indoors or take your chances outside?",
+    "tooltip": "Decide whether to seek shelter indoors or brave the storm outside.",
+    "options": [
+      {
+        "label": "Indoors, Please",
+        "value": "indoors",
+        "include": ["indoorSeating"],
+        "exclude": ["outdoorSeating"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 4
+      },
+      {
+        "label": "I Do Not Mind the Rain",
+        "value": "outdoors",
+        "include": ["outdoorSeating"],
+        "exclude": ["indoorSeating"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 4
       }
-    },
-    {
-      "questionId": 4,
-      "question": "Do You Need Special Accommodations?",
-      "dialogue": "Before embarking on this journey, consider the path ahead—does it accommodate all pioneers, or will some find it impassable?",
-      "conditions": ["dineIn", "takeout"],
-      "options": {
-        "Yes, Accessibility Is Important": {
-          "include": ["accessibilityOptions"]
-        },
-        "No Special Needs": {
-          "exclude": ["accessibilityOptions"]
-        }
+    ]
+  },
+  {
+    "questionId": 4,
+    "question": "Do You Need Special Accommodations?",
+    "dialogue": "Before embarking on this journey, consider the path ahead-does it accommodate all pioneers, or will some find it impassable?",
+    "tooltip": "Choose if you require special accommodations for a comfortable dining experience.",
+    "options": [
+      {
+        "label": "Yes, Accessibility Is Important",
+        "value": "accessibilityImportant",
+        "include": ["accessibilityOptions"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 5
+      },
+      {
+        "label": "No Special Needs",
+        "value": "noSpecialNeeds",
+        "exclude": ["accessibilityOptions"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 5
       }
-    },
-    {
-      "questionId": 5,
-      "question": "You’ve Chosen Vegetarian Before—Shall We Keep It Green?",
-      "dialogue": "You've shown a preference for vegetarian meals in the past. Would you like to see vegetarian options first?",
-      "conditions": ["userHistory.includes('vegetarian')"],
-      "options": {
-        "Yes, Show Me Vegetarian Options": {
-          "include": ["vegetarianRestaurant", "veganRestaurant"]
-        },
-        "No, Show Me Everything": {
-          "exclude": ["vegetarianRestaurant", "veganRestaurant"]
-        }
+    ]
+  },
+  {
+    "questionId": 5,
+    "question": "You’ve Chosen Vegetarian Before-Shall We Keep It Green?",
+    "dialogue": "You've shown a preference for vegetarian meals in the past. Would you like to see vegetarian options first?",
+    "tooltip": "Decide if you want to prioritize vegetarian options based on your past choices.",
+    "options": [
+      {
+        "label": "Yes, Show Me Vegetarian Options",
+        "value": "vegetarianOptions",
+        "include": ["vegetarianRestaurant", "veganRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 6
+      },
+      {
+        "label": "No, Show Me Everything",
+        "value": "showEverything",
+        "exclude": ["vegetarianRestaurant", "veganRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 6
       }
-    },
-    {
-      "questionId": 6,
-      "question": "Is Your Faithful Hound by Your Side?",
-      "dialogue": "Your faithful hound looks eager to join the trek. Will you choose a spot where they can roam freely, or leave them behind to guard the wagon?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, My Dog Is With Me": {
-          "include": ["allowsDogs"]
-        },
-        "No, I’m Traveling Alone": {
-          "exclude": ["allowsDogs"]
-        }
+    ]
+  },
+  {
+    "questionId": 6,
+    "question": "Is Your Faithful Hound by Your Side?",
+    "dialogue": "Your faithful hound looks eager to join the trek. Will you choose a spot where they can roam freely, or leave them behind to guard the wagon?",
+    "tooltip": "Decide if your loyal pet will accompany you on the journey or stay behind.",
+    "options": [
+      {
+        "label": "Yes, My Dog Is With Me",
+        "value": "dogWithMe",
+        "include": ["allowsDogs"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 7
+      },
+      {
+        "label": "No, I am Traveling Alone",
+        "value": "travelingAlone",
+        "exclude": ["allowsDogs"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 7
       }
-    },
-    {
-      "questionId": 7,
-      "question": "Is the Establishment Steady or Shaky?",
-      "dialogue": "The establishment ahead seems to be in uncertain times. Will you risk a visit, hoping they’re still open for trade, or seek out a more certain stop?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "I’ll Take My Chances": {
-          "include": ["businessStatus"]
-        },
-        "I’ll Look for a Sure Bet": {
-          "exclude": ["businessStatus"]
-        }
+    ]
+  },
+  {
+    "questionId": 7,
+    "question": "Is the Establishment Steady or Shaky?",
+    "dialogue": "The establishment ahead seems to be in uncertain times. Will you risk a visit, hoping they’re still open for trade, or seek out a more certain stop?",
+    "tooltip": "Choose between taking a chance on an uncertain establishment or opting for a more reliable stop.",
+    "options": [
+      {
+        "label": "I’ll Take My Chances",
+        "value": "takeChances",
+        "include": ["businessStatus"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 8
+      },
+      {
+        "label": "I’ll Look for a Sure Bet",
+        "value": "sureBet",
+        "exclude": ["businessStatus"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 8
       }
-    },
-    {
-      "questionId": 8,
-      "question": "A Fellow Traveler Shares a Tip—Do You Listen?",
-      "dialogue": "A fellow traveler suggests a great dining spot off the beaten path. Do you wish to follow the tip or stick to your original plan?",
-      "eventTrigger": "randomEvent",
-      "options": {
-        "Follow the Tip": {
-          "include": ["hiddenGemRestaurant"],
-          "eventOutcome": "bonusReward"
-        },
-        "Stick to the Plan": {
-          "noChange": true
-        }
+    ]
+  },
+  {
+    "questionId": 8,
+    "question": "A Fellow Traveler Shares a Tip-Do You Listen?",
+    "dialogue": "A fellow traveler suggests a great dining spot off the beaten path. Do you wish to follow the tip or stick to your original plan?",
+    "tooltip": "Decide whether to follow a traveler's tip for a hidden gem dining spot or stick to your plan.",
+    "options": [
+      {
+        "label": "Follow the Tip",
+        "value": "followTip",
+        "include": ["hiddenGemRestaurant"],
+        "eventOutcome": "bonusReward",
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 9
+      },
+      {
+        "label": "Stick to the Plan",
+        "value": "stickToPlan",
+        "noChange": true,
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 9
       }
-    },
-    {
-      "questionId": 9,
-      "question": "Does Your Group Need Room to Gather?",
-      "dialogue": "Your party is large—will this stop offer enough space for all, or must you divide and conquer?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, We Need Room for Everyone": {
-          "include": ["goodForGroups"]
-        },
-        "No, We’re a Small Group": {
-          "exclude": ["goodForGroups"]
-        }
+    ]
+  },
+  {
+    "questionId": 9,
+    "question": "Does Your Group Need Room to Gather?",
+    "dialogue": "Your party is large-will this stop offer enough space for all, or must you divide and conquer?",
+    "tooltip": "Choose if the dining stop provides enough space for your group to gather comfortably.",
+    "options": [
+      {
+        "label": "Yes, We Need Room for Everyone",
+        "value": "roomForEveryone",
+        "include": ["goodForGroups"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 10
+      },
+      {
+        "label": "No, We’re a Small Group",
+        "value": "smallGroup",
+        "exclude": ["goodForGroups"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 10
       }
-    },
-    {
-      "questionId": 10,
-      "question": "Do the Young Ones Need Special Fare?",
-      "dialogue": "The young ones are restless—do you stop at a place suited for their needs, or continue on, knowing they’ll have to endure?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, We Need Kid-Friendly Options": {
-          "include": ["goodForChildren", "menuForChildren"]
-        },
-        "No, Just Regular Fare": {
-          "exclude": ["goodForChildren", "menuForChildren"]
-        }
+    ]
+  },
+  {
+    "questionId": 10,
+    "question": "Do the Young Ones Need Special Fare?",
+    "dialogue": "The young ones are restless-do you stop at a place suited for their needs, or continue on, knowing they’ll have to endure?",
+    "tooltip": "Decide if the dining stop offers kid-friendly options for the young travelers.",
+    "options": [
+      {
+        "label": "Yes, We Need Kid-Friendly Options",
+        "value": "kidFriendly",
+        "include": ["goodForChildren", "menuForChildren"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 11
+      },
+      {
+        "label": "No, Just Regular Fare",
+        "value": "regularFare",
+        "exclude": ["goodForChildren", "menuForChildren"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 11
       }
-    },
-    {
-      "questionId": 11,
-      "question": "Do You Crave the Spices of the Frontier?",
-      "dialogue": "The trail is dusty, and your palate craves excitement. Will you seek out a meal with a kick?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Bring on the Heat!": {
-          "include": ["mexicanRestaurant", "indianRestaurant", "thaiRestaurant"]
-        },
-        "I Prefer Milder Tastes": {
-          "exclude": ["mexicanRestaurant", "indianRestaurant", "thaiRestaurant"]
-        }
+    ]
+  },
+  {
+    "questionId": 11,
+    "question": "Do You Crave the Spices of the Frontier?",
+    "dialogue": "The trail is dusty, and your palate craves excitement. Will you seek out a meal with a kick?",
+    "tooltip": "Choose whether to spice things up with a flavorful and spicy meal.",
+    "options": [
+      {
+        "label": "Bring on the Heat!",
+        "value": "bringHeat",
+        "include": ["mexicanRestaurant", "indianRestaurant", "thaiRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 12
+      },
+      {
+        "label": "I Prefer Milder Tastes",
+        "value": "milderTastes",
+        "exclude": ["mexicanRestaurant", "indianRestaurant", "thaiRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 12
       }
-    },
-    {
-      "questionId": 12,
-      "question": "Do You Long for the Bounty of the Sea?",
-      "dialogue": "Even far from the coast, the call of the sea is strong. Will you dine on the ocean’s bounty?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, I Crave Seafood": {
-          "include": ["seafoodRestaurant", "sushiRestaurant"]
-        },
-        "No, I’ll Stick to Land": {
-          "exclude": ["seafoodRestaurant", "sushiRestaurant"]
-        }
+    ]
+  },
+  {
+    "questionId": 12,
+    "question": "Do You Long for the Bounty of the Sea?",
+    "dialogue": "Even far from the coast, the call of the sea is strong. Will you dine on the ocean’s bounty?",
+    "tooltip": "Decide if you want to indulge in seafood options during your dining experience.",
+    "options": [
+      {
+        "label": "Yes, I Crave Seafood",
+        "value": "craveSeafood",
+        "include": ["seafoodRestaurant", "sushiRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 13
+      },
+      {
+        "label": "No, I’ll Stick to Land",
+        "value": "stickToLand",
+        "exclude": ["seafoodRestaurant", "sushiRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 13
       }
-    },
-    {
-      "questionId": 13,
-      "question": "Would You Like Something Sweet After Your Meal?",
-      "dialogue": "After a long day’s journey, do you indulge in a sweet treat, or press on to the next outpost?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, A Sweet Treat Would Be Nice": {
-          "include": ["bakery", "iceCreamShop", "dessertShop"]
-        },
-        "No, I’ll Save My Appetite": {
-          "exclude": ["bakery", "iceCreamShop", "dessertShop"]
-        }
+    ]
+  },
+  {
+    "questionId": 13,
+    "question": "Would You Like Something Sweet After Your Meal?",
+    "dialogue": "After a long day’s journey, do you indulge in a sweet treat, or press on to the next outpost?",
+    "tooltip": "Decide if you want to treat yourself with a sweet dessert after your meal.",
+    "options": [
+      {
+        "label": "Yes, A Sweet Treat Would Be Nice",
+        "value": "sweetTreat",
+        "include": ["bakery", "iceCreamShop", "dessertShop"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 14
+      },
+      {
+        "label": "No, I’ll Save My Appetite",
+        "value": "saveAppetite",
+        "exclude": ["bakery", "iceCreamShop", "dessertShop"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 14
       }
-    },
-    {
-      "questionId": 14,
-      "question": "Do You Seek the Flavors of Distant Lands?",
-      "dialogue": "Your journey has taken you far—do you wish to taste the exotic flavors of lands beyond?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, Take Me on a Culinary Adventure": {
-          "include": [
-            "italianRestaurant",
-            "chineseRestaurant",
-            "indianRestaurant",
-            "japaneseRestaurant",
-            "greekRestaurant"
-          ]
-        },
-        "No, I’ll Stick to Familiar Flavors": {
-          "exclude": [
-            "italianRestaurant",
-            "chineseRestaurant",
-            "indianRestaurant",
-            "japaneseRestaurant",
-            "greekRestaurant"
-          ]
-        }
+    ]
+  },
+  {
+    "questionId": 14,
+    "question": "Do You Seek the Flavors of Distant Lands?",
+    "dialogue": "Your journey has taken you far-do you wish to taste the exotic flavors of lands beyond?",
+    "tooltip": "Choose if you want to explore exotic culinary flavors from distant lands.",
+    "options": [
+      {
+        "label": "Yes, Take Me on a Culinary Adventure",
+        "value": "culinaryAdventure",
+        "include": [
+          "italianRestaurant",
+          "chineseRestaurant",
+          "indianRestaurant",
+          "japaneseRestaurant",
+          "greekRestaurant"
+        ],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 15
+      },
+      {
+        "label": "No, I’ll Stick to Familiar Flavors",
+        "value": "familiarFlavors",
+        "exclude": [
+          "italianRestaurant",
+          "chineseRestaurant",
+          "indianRestaurant",
+          "japaneseRestaurant",
+          "greekRestaurant"
+        ],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 15
       }
-    },
-    {
-      "questionId": 15,
-      "question": "Would You Prefer a Sturdy Meal or a Light Bite?",
-      "dialogue": "The trail ahead is long. Do you seek a meal that will sustain you, or something lighter to carry on?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "A Sturdy, Meat-Based Meal": {
-          "include": ["steakHouse", "barbecueRestaurant", "hamburgerRestaurant"]
-        },
-        "A Lighter, Plant-Based Meal": {
-          "include": [
-            "vegetarianRestaurant",
-            "veganRestaurant",
-            "mediterraneanRestaurant"
-          ]
-        }
+    ]
+  },
+  {
+    "questionId": 15,
+    "question": "Would You Prefer a Sturdy Meal or a Light Bite?",
+    "dialogue": "The trail ahead is long. Do you seek a meal that will sustain you, or something lighter to carry on?",
+    "tooltip": "Decide if you want a hearty meal to keep you going or a lighter option for the journey.",
+    "options": [
+      {
+        "label": "A Sturdy, Meat-Based Meal",
+        "value": "meatBasedMeal",
+        "include": ["steakHouse", "barbecueRestaurant", "hamburgerRestaurant"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 16
+      },
+      {
+        "label": "A Lighter, Plant-Based Meal",
+        "value": "plantBasedMeal",
+        "include": [
+          "vegetarianRestaurant",
+          "veganRestaurant",
+          "mediterraneanRestaurant"
+        ],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 16
       }
-    },
-    {
-      "questionId": 16,
-      "question": "Would You Care for a Drink with Your Meal?",
-      "dialogue": "The sun is setting, and a drink might lift your spirits. Will you partake in ale or wine?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, A Drink Sounds Good": {
-          "include": ["bar", "pub", "wineBar", "brewpub"]
-        },
-        "No, Just Food for Me": {
-          "exclude": ["bar", "pub", "wineBar", "brewpub"]
-        }
+    ]
+  },
+  {
+    "questionId": 16,
+    "question": "Would You Care for a Drink with Your Meal?",
+    "dialogue": "The sun is setting, and a drink might lift your spirits. Will you partake in ale or wine?",
+    "tooltip": "Choose if you want to enjoy a drink alongside your meal for added enjoyment.",
+    "options": [
+      {
+        "label": "Yes, A Drink Sounds Good",
+        "value": "drinkSoundsGood",
+        "include": ["bar", "pub", "wineBar", "brewpub"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 17
+      },
+      {
+        "label": "No, Just Food for Me",
+        "value": "justFood",
+        "exclude": ["bar", "pub", "wineBar", "brewpub"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 17
       }
-    },
-    {
-      "questionId": 17,
-      "question": "Do You Follow a Special Diet on the Trail?",
-      "dialogue": "The trail is rough, but your diet is firm. Do you have special dietary needs?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, I Have Dietary Needs": {
-          "include": [
-            "vegetarianRestaurant",
-            "veganRestaurant",
-            "glutenFreeFriendly",
-            "healthyOptions"
-          ]
-        },
-        "No, I Eat Whatever Is Available": {
-          "exclude": [
-            "vegetarianRestaurant",
-            "veganRestaurant",
-            "glutenFreeFriendly"
-          ]
-        }
+    ]
+  },
+  {
+    "questionId": 17,
+    "question": "Do You Follow a Special Diet on the Trail?",
+    "dialogue": "The trail is rough, but your diet is firm. Do you have special dietary needs?",
+    "tooltip": "Decide if you have special dietary needs that should be considered during your dining experience.",
+    "options": [
+      {
+        "label": "Yes, I Have Dietary Needs",
+        "value": "dietaryNeeds",
+        "include": [
+          "vegetarianRestaurant",
+          "veganRestaurant",
+          "glutenFreeFriendly",
+          "healthyOptions"
+        ],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 19
+      },
+      {
+        "label": "No, I Eat Whatever Is Available",
+        "value": "eatWhatever",
+        "exclude": [
+          "vegetarianRestaurant",
+          "veganRestaurant",
+          "glutenFreeFriendly"
+        ],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 19
       }
-    },
-    {
-      "questionId": 18,
-      "question": "What Time of Day Is It on the Trail?",
-      "dialogue": "The time of day dictates your next meal. Is it morning, noon, or night?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Morning—Time for Breakfast": {
-          "include": ["breakfastRestaurant", "cafe", "brunchRestaurant"]
-        },
-        "Midday or Evening—Time for a Hearty Meal": {
-          "include": ["allRestaurants"]
-        },
-        "Night—A Late Snack Before Rest": {
-          "include": ["fastFoodRestaurant", "diner", "bakery"]
-        }
+    ]
+  },
+  {
+    "questionId": 19,
+    "question": "You’ve Earned a Badge-Claim Your Reward?",
+    "dialogue": "Congratulations, pioneer! You've earned a badge for choosing local eateries. Would you like to see your reward options?",
+    "tooltip": "Claim your reward for selecting local eateries during your journey.",
+    "options": [
+      {
+        "label": "Claim My Reward",
+        "value": "claimReward",
+        "eventOutcome": "showRewardOptions",
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 20
+      },
+      {
+        "label": "Save It for Later",
+        "value": "saveForLater",
+        "noChange": true,
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 20
       }
-    },
-    {
-      "questionId": 19,
-      "question": "You’ve Earned a Badge—Claim Your Reward?",
-      "dialogue": "Congratulations, pioneer! You've earned a badge for choosing local eateries. Would you like to see your reward options?",
-      "eventTrigger": "badgeEarned",
-      "options": {
-        "Claim My Reward": {
-          "eventOutcome": "showRewardOptions"
-        },
-        "Save It for Later": {
-          "noChange": true
-        }
+    ]
+  },
+  {
+    "questionId": 20,
+    "question": "Do You Need a Place to Park the Wagon?",
+    "dialogue": "A safe place to leave your wagon is hard to find-this stop offers ample space. Do you make it your temporary home, or press on?",
+    "tooltip": "Decide if you need parking space for your wagon at the dining stop.",
+    "options": [
+      {
+        "label": "Yes, I Need Parking",
+        "value": "needParking",
+        "include": ["parkingOptions"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 21
+      },
+      {
+        "label": "No, I’ll Manage Without",
+        "value": "manageWithout",
+        "exclude": ["parkingOptions"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 21
       }
-    },
-    {
-      "questionId": 20,
-      "question": "Do You Need a Place to Park the Wagon?",
-      "dialogue": "A safe place to leave your wagon is hard to find—this stop offers ample space. Do you make it your temporary home, or press on?",
-      "conditions": ["dineIn", "takeout"],
-      "options": {
-        "Yes, I Need Parking": {
-          "include": ["parkingOptions"]
-        },
-        "No, I’ll Manage Without": {
-          "exclude": ["parkingOptions"]
-        }
+    ]
+  },
+  {
+    "questionId": 21,
+    "question": "Are You Concerned About the Cost?",
+    "dialogue": "The cost of supplies varies greatly-will you spend a fortune for luxury, or seek out more modest fare to conserve your wealth?",
+    "tooltip": "Choose between splurging on luxury dining or opting for more budget-friendly options.",
+    "options": [
+      {
+        "label": "I'm Watching My Budget",
+        "value": "watchingBudget",
+        "include": ["priceLevel"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 22
+      },
+      {
+        "label": "I'm Not Concerned About Cost",
+        "value": "notConcerned",
+        "exclude": ["priceLevel"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 22
       }
-    },
-    {
-      "questionId": 21,
-      "question": "Are You Concerned About the Cost?",
-      "dialogue": "The cost of supplies varies greatly—will you spend a fortune for luxury, or seek out more modest fare to conserve your wealth?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "I’m Watching My Budget": {
-          "include": ["priceLevel"]
-        },
-        "I’m Not Concerned About Cost": {
-          "exclude": ["priceLevel"]
-        }
+    ]
+  },
+  {
+    "questionId": 22,
+    "question": "Do You Trust the Judgment of Other Travelers?",
+    "dialogue": "Word from other travelers speaks highly of this stop-will you trust their judgment, or forge your own path?",
+    "tooltip": "Decide if you value the opinions of other travelers in selecting your dining destination.",
+    "options": [
+      {
+        "label": "Yes, I Value Their Opinions",
+        "value": "valueOpinions",
+        "include": ["rating", "userRatingCount"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 23
+      },
+      {
+        "label": "No, I’ll Decide for Myself",
+        "value": "decideForMyself",
+        "exclude": ["rating", "userRatingCount"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 23
       }
-    },
-    {
-      "questionId": 22,
-      "question": "Do You Trust the Judgment of Other Travelers?",
-      "dialogue": "Word from other travelers speaks highly of this stop—will you trust their judgment, or forge your own path?",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, I Value Their Opinions": {
-          "include": ["rating", "userRatingCount"]
-        },
-        "No, I’ll Decide for Myself": {
-          "exclude": ["rating", "userRatingCount"]
-        }
+    ]
+  },
+  {
+    "questionId": 23,
+    "question": "Do You Need Facilities on the Trail?",
+    "dialogue": "A place to relieve yourself is always welcome-will you stop here to refresh, or wait until the next opportunity?",
+    "tooltip": "Decide if you need restroom facilities at the dining stop for your comfort.",
+    "options": [
+      {
+        "label": "Yes, I Need a Restroom",
+        "value": "needRestroom",
+        "include": ["restroom"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 24
+      },
+      {
+        "label": "No, I Can Wait",
+        "value": "canWait",
+        "exclude": ["restroom"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 24
       }
-    },
-    {
-      "questionId": 23,
-      "question": "Do You Need Facilities on the Trail?",
-      "dialogue": "A place to relieve yourself is always welcome—will you stop here to refresh, or wait until the next opportunity?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, I Need a Restroom": {
-          "include": ["restroom"]
-        },
-        "No, I Can Wait": {
-          "exclude": ["restroom"]
-        }
+    ]
+  },
+  {
+    "questionId": 24,
+    "question": "Would You Enjoy Some Music Along the Way?",
+    "dialogue": "The air is alive with music-will you stop to listen to the tunes of the frontier, or press on in silence?",
+    "tooltip": "Decide if you want to enjoy live music at the dining stop for added entertainment.",
+    "options": [
+      {
+        "label": "Yes, Music Would Be Nice",
+        "value": "musicNice",
+        "include": ["liveMusic"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 25
+      },
+      {
+        "label": "No, I Prefer Silence",
+        "value": "preferSilence",
+        "exclude": ["liveMusic"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 25
       }
-    },
-    {
-      "questionId": 24,
-      "question": "Would You Enjoy Some Music Along the Way?",
-      "dialogue": "The air is alive with music—will you stop to listen to the tunes of the frontier, or press on in silence?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, Music Would Be Nice": {
-          "include": ["liveMusic"]
-        },
-        "No, I Prefer Silence": {
-          "exclude": ["liveMusic"]
-        }
+    ]
+  },
+  {
+    "questionId": 25,
+    "question": "Do You Seek More Than Just a Meal?",
+    "dialogue": "This stop offers more than just one attraction-will you explore all it has to offer, or focus on the main prize?",
+    "tooltip": "Choose if you want to explore additional attractions at the dining stop.",
+    "options": [
+      {
+        "label": "Yes, I Like Exploring",
+        "value": "likeExploring",
+        "include": ["subDestinations"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 26
+      },
+      {
+        "label": "No, I'm Just Here for the Food",
+        "value": "justHereForFood",
+        "exclude": ["subDestinations"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 26
       }
-    },
-    {
-      "questionId": 25,
-      "question": "Do You Seek More Than Just a Meal?",
-      "dialogue": "This stop offers more than just one attraction—will you explore all it has to offer, or focus on the main prize?",
-      "conditions": ["dineIn"],
-      "options": {
-        "Yes, I Like Exploring": {
-          "include": ["subDestinations"]
-        },
-        "No, I’m Just Here for the Food": {
-          "exclude": ["subDestinations"]
-        }
+    ]
+  },
+  {
+    "questionId": 26,
+    "question": "Would You Like to Learn More Before You Decide?",
+    "dialogue": "There’s more to learn about this place if you seek it-visit their signpost (website) to gather more information before deciding.",
+    "tooltip": "Decide if you want to explore more information about the dining stop before making a decision.",
+    "options": [
+      {
+        "label": "Yes, Let Me Check",
+        "value": "letMeCheck",
+        "include": ["websiteUri"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 27
+      },
+      {
+        "label": "No, I'm Ready to Decide",
+        "value": "readyToDecide",
+        "exclude": ["websiteUri"],
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 27
       }
-    },
-    {
-      "questionId": 26,
-      "question": "Would You Like to Learn More Before You Decide?",
-      "dialogue": "There’s more to learn about this place if you seek it—visit their signpost (website) to gather more information before deciding.",
-      "conditions": ["dineIn", "delivery", "takeout"],
-      "options": {
-        "Yes, Let Me Check": {
-          "include": ["websiteUri"]
-        },
-        "No, I’m Ready to Decide": {
-          "exclude": ["websiteUri"]
-        }
+    ]
+  },
+  {
+    "questionId": 27,
+    "question": "Old Man Jenkins Warns of Danger Ahead-Do You Heed His Warning?",
+    "dialogue": "Old Man Jenkins, a seasoned traveler, warns you of a treacherous path. Do you trust his judgment and take a safer route, or do you continue on your chosen path?",
+    "tooltip": "Decide if you trust the advice of Old Man Jenkins and choose a safer route or continue on your current path.",
+    "options": [
+      {
+        "label": "Heed His Warning",
+        "value": "heedWarning",
+        "include": ["saferRoute"],
+        "eventOutcome": "skipNextChallenge",
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 28
+      },
+      {
+        "label": "Continue On",
+        "value": "continueOn",
+        "include": ["originalRoute"],
+        "eventOutcome": "faceNextChallenge",
+        "questionsToSkip": [],
+        "nextDiscoveryPrompt": 28
       }
-    },
-    {
-      "questionId": 27,
-      "question": "Old Man Jenkins Warns of Danger Ahead—Do You Heed His Warning?",
-      "dialogue": "Old Man Jenkins, a seasoned traveler, warns you of a treacherous path. Do you trust his judgment and take a safer route, or do you continue on your chosen path?",
-      "eventTrigger": "characterInteraction",
-      "options": {
-        "Heed His Warning": {
-          "include": ["saferRoute"],
-          "eventOutcome": "skipNextChallenge"
-        },
-        "Continue On": {
-          "include": ["originalRoute"],
-          "eventOutcome": "faceNextChallenge"
-        }
+    ]
+  },
+  {
+    "questionId": 28,
+    "question": "Are You Ready to Find Your Destination?",
+    "dialogue": "You've considered your options and the journey ahead. Are you ready to discover your destination?",
+    "tooltip": "This is the final step to confirm you're ready to find your dining destination.",
+    "options": [
+      {
+        "label": "Yes, Let's Find It!",
+        "value": "findDestination",
+        "nextDiscoveryPrompt": null
+      },
+      {
+        "label": "No, I Need to Review",
+        "value": "reviewChoices",
+        "nextDiscoveryPrompt": null
       }
-    }
-  ]
-}
+    ]
+  }
+]

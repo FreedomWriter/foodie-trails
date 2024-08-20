@@ -1,41 +1,29 @@
 export const appearance = {
   variables: {
-    // Core Colors
-    colorPrimary: 'rgb(0, 255, 0)', // DOS Green used throughout the components
-    colorDanger: 'rgb(255, 0, 0)', // Bright Red for error states
-    colorSuccess: 'rgb(0, 255, 0)', // DOS Green for success states
-    colorWarning: 'rgb(255, 165, 0)', // Bright Orange for warning states
-    colorNeutral: 'rgb(180, 180, 180)', // Even brighter grey for better readability
-
-    // Text Colors
-    colorText: 'rgb(0, 255, 0)', // DOS Green for general text
-    colorTextOnPrimaryBackground: 'rgb(0, 0, 0)', // Black text on primary green background
-    colorTextSecondary: 'rgb(220, 220, 220)', // Much brighter grey for secondary text
-
-    // Backgrounds
-    colorBackground: 'rgb(0, 0, 0)', // DOS Black for card container backgrounds
-    colorInputText: 'rgb(0, 255, 0)', // DOS Green for input text
-    colorInputBackground: 'rgb(0, 0, 0)', // DOS Black for input background
-    colorShimmer: 'rgb(0, 255, 0)', // DOS Green for shimmer effect
-
-    // Typography
-    fontFamily: 'Courier New, Courier, monospace', // DOS-style font family throughout
-    fontFamilyButtons: 'Courier New, Courier, monospace', // DOS-style font for buttons
-    fontSize: '1rem', // Increased font size for better readability
-
-    // Borders and Spacing
-    borderRadius: '0.25rem', // Minimal border radius for a retro feel
-    spacingUnit: '0.75rem', // Compact spacing for a retro look
-
-    // Font Weights
+    colorPrimary: 'rgb(0, 255, 0)',
+    colorDanger: 'rgb(255, 0, 0)',
+    colorSuccess: 'rgb(0, 255, 0)',
+    colorWarning: 'rgb(255, 165, 0)',
+    colorNeutral: 'rgb(180, 180, 180)',
+    colorText: 'rgb(0, 255, 0)',
+    colorTextOnPrimaryBackground: 'rgb(0, 0, 0)',
+    colorTextSecondary: 'rgb(220, 220, 220)',
+    colorBackground: 'rgb(0, 0, 0)',
+    colorInputText: 'rgb(0, 255, 0)',
+    colorInputBackground: 'rgb(0, 0, 0)',
+    colorShimmer: 'rgb(0, 255, 0)',
+    fontFamily: 'Courier New, Courier, monospace',
+    fontFamilyButtons: 'Courier New, Courier, monospace',
+    fontSize: '1rem',
+    borderRadius: '0.25rem',
+    spacingUnit: '0.75rem',
     fontWeight: {
-      normal: 400, // Normal weight
-      medium: 600, // Medium weight for better readability
-      semibold: 700, // Semi-bold weight for button text
-      bold: 700, // Bold weight for emphasis
+      normal: 400,
+      medium: 600,
+      semibold: 700,
+      bold: 700,
     },
   },
-
   elements: {
     card: 'rounded border-2 border-[rgb(0,255,0)] bg-[rgb(0,0,0)] shadow-[4px_4px_0px_rgb(0,255,0)] p-4',
     headerTitle: 'text-4xl font-dos text-[rgb(0,255,0)] mb-6 text-center',
@@ -43,7 +31,7 @@ export const appearance = {
       'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] shadow-[4px_4px_0px_rgb(0,255,0)] uppercase px-5 py-2 font-semibold text-lg',
     formFieldInput:
       'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm shadow-inner placeholder-[rgb(180,180,180)]',
-    footer: 'text-[rgb(220,220,220)] text-center mt-4 font-semibold text-lg', // Increased size and weight for readability
+    footer: 'text-[rgb(220,220,220)] text-center mt-4 font-semibold text-lg',
     userButton: {
       base: 'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm font-semibold text-lg',
       hover:

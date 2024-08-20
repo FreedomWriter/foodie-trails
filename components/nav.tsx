@@ -1,7 +1,10 @@
+import { SignInButton, UserButton } from '@clerk/nextjs';
+import { useConvexAuth } from 'convex/react';
 import Link from 'next/link';
 import React from 'react';
 
 export const Navbar: React.FC = () => {
+  const { isLoading, isAuthenticated } = useConvexAuth();
   return (
     <header className='w-full'>
       <nav className='w-full px-4 py-3 sm:px-6 sm:py-4 gap-x-4 sm:gap-x-8 bg-background border-b-2 border-highlight shadow-retro'>
@@ -13,7 +16,9 @@ export const Navbar: React.FC = () => {
               </div>
             </Link>
           </li>
-          <li>Do some Clerk magic!</li>
+          <li>
+            {isAuthenticated && !isLoading ? <UserButton /> : <SignInButton />}
+          </li>
         </ul>
       </nav>
     </header>
