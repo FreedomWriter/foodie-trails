@@ -85,13 +85,28 @@ body {
   }
   /* Info Window Styles */
   .info-window {
-    background-color: #000000; /* Black background for retro theme */
-    color: #00ff00; /* Bright green text */
-    padding: 10px;
+    background-color: #1a1a1a;
+    color: #00ff00;
+    padding: 24px;
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 4px 4px 0px #808080; /* Retro-style shadow */
-    max-width: 250px;
+    box-shadow: 4px 4px 0px #808080;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  button[aria-label='Close'] span {
+    background-color: #00ff00;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  [role='dialog'] {
+    background-color: #1a1a1a !important;
+    border: 4px solid #00ff00;
+    width: 100%;
   }
 
   .info-window-title {
@@ -104,22 +119,21 @@ body {
   .info-window-hours,
   .info-window-rating {
     font-size: 1rem;
-    margin: 4px 0;
   }
 
   .info-window-photo {
-    width: 100%; /* Make the image take the full width of the container */
-    height: auto; /* Maintain the aspect ratio */
+    /* Maintain the aspect ratio */
     max-width: 200px; /* Ensure the image doesn't grow too wide */
     max-height: 150px; /* Ensure the image doesn't grow too tall */
     margin-top: 8px;
     border-radius: 4px;
+
     box-shadow: 2px 2px 0px #808080; /* Retro-style shadow for the image */
   }
 
   .primary-button {
     background-color: #00ff00; /* Replace with your primary color */
-    color: #000000; /* Text color */
+    color: #1a1a1a; /* Text color */
     padding: 8px 16px;
     border: 2px solid #808080; /* Border color */
     box-shadow: 4px 4px 0px #808080;
@@ -127,11 +141,32 @@ body {
     font-size: 14px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
   }
 
   .primary-button:hover {
-    background-color: #000000; /* Inverse colors on hover */
+    background-color: #1a1a1a; /* Inverse colors on hover */
     color: #00ff00;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Black background */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #00ff00; /* Green thumb using the tailwind theme color */
+    border-radius: 10px;
+    border: 2px solid #1a1a1a; /* Border around the thumb */
+  }
+
+  .custom-scrollbar {
+    scrollbar-color: #00ff00 #1a1a1a; /* For Firefox */
+    scrollbar-width: thin; /* For Firefox */
   }
 }

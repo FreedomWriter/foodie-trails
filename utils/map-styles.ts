@@ -70,7 +70,7 @@ export const retroMapStyles = [
   {
     featureType: 'all',
     elementType: 'geometry',
-    stylers: [{ color: '#000000' }], // Background color
+    stylers: [{ color: '#1a1a1a' }], // Background color
   },
   {
     featureType: 'all',
@@ -81,19 +81,20 @@ export const retroMapStyles = [
     featureType: 'all',
     elementType: 'labels.text.stroke',
     stylers: [
-      { color: '#000000' }, // Black stroke for contrast
+      { color: '#1a1a1a' }, // Black stroke for contrast
       { weight: 2 }, // Stroke weight
     ],
   },
   {
     featureType: 'road',
     elementType: 'geometry',
-    stylers: [{ color: '#999999' }], // Neutral gray for roads, colorblind-friendly
+    stylers: [{ visibility: 'off' }],
+    // stylers: [{ color: '#999999' }], // Neutral gray for roads, colorblind-friendly
   },
   {
     featureType: 'water',
     elementType: 'geometry',
-    stylers: [{ color: '#000000' }], // Black water bodies
+    stylers: [{ color: '#1a1a1a' }], // Black water bodies
   },
   {
     featureType: 'water',
@@ -111,3 +112,53 @@ export const defaultMapStyles = [
     stylers: [{ visibility: 'off' }], // Hide natural landscapes
   },
 ];
+
+export const createUserMarkerContent = () => {
+  const userMarkerContent = document.createElement('div');
+  userMarkerContent.className = 'user-marker';
+  userMarkerContent.style.padding = '10px';
+  userMarkerContent.style.backgroundColor = 'black';
+  userMarkerContent.style.color = 'white';
+  userMarkerContent.style.border = '4px solid #FF3333';
+  userMarkerContent.style.borderRadius = '50%';
+  userMarkerContent.style.textAlign = 'center';
+  userMarkerContent.style.fontSize = '16px';
+  userMarkerContent.textContent = 'You';
+  userMarkerContent.style.color = '#FF3333';
+  return userMarkerContent;
+};
+
+export const createRestaurantMarkerContent = () => {
+  const markerContent = document.createElement('div');
+  markerContent.className = 'x-marker';
+  markerContent.style.width = '20px';
+  markerContent.style.height = '20px';
+  markerContent.style.position = 'relative';
+  markerContent.style.backgroundColor = 'transparent';
+
+  const xLine1 = document.createElement('div');
+  xLine1.style.position = 'absolute';
+  xLine1.style.width = '100%';
+  xLine1.style.height = '4px';
+  xLine1.style.fontWeight = 'semi-bold';
+  xLine1.style.backgroundColor = '#FF3333';
+  xLine1.style.transform = 'rotate(45deg)';
+  xLine1.style.top = '50%';
+  xLine1.style.left = '0';
+  xLine1.style.transformOrigin = 'center';
+
+  const xLine2 = document.createElement('div');
+  xLine2.style.position = 'absolute';
+  xLine2.style.width = '100%';
+  xLine2.style.height = '4px';
+  xLine2.style.fontWeight = 'semi-bold';
+  xLine2.style.backgroundColor = '#FF3333';
+  xLine2.style.transform = 'rotate(-45deg)';
+  xLine2.style.top = '50%';
+  xLine2.style.left = '0';
+  xLine2.style.transformOrigin = 'center';
+
+  markerContent.appendChild(xLine1);
+  markerContent.appendChild(xLine2);
+  return markerContent;
+};

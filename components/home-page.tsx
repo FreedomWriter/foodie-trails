@@ -29,6 +29,7 @@ export const HomePage = () => {
     return <Loader />;
   }
 
+  console.log({ discoveryPrompt, questionIdToFetch });
   const onSelect = (option: Option) => {
     console.log(option);
 

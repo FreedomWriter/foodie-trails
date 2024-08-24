@@ -27,6 +27,10 @@ export default function ClientLayout({
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
           strategy='beforeInteractive' // Ensures the script is loaded early
         />
+        {/* <Script
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap&v=weekly&libraries=marker`}
+          defer
+        ></Script> */}
         {/* Layout container */}
         <div className='min-h-screen flex flex-col font-dos overflow-hidden w-full'>
           <Navbar />
