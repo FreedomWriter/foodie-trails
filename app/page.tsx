@@ -1,6 +1,6 @@
-import { HomePage } from '@/home-page';
+import { Home } from '@/home';
 import './globals.css';
 
-export default function Home() {
-  return <HomePage />;
+export default function HomePage() {
+  return <Home />;
 }

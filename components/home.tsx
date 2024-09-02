@@ -15,7 +15,7 @@ export interface Option {
   nextDiscoveryPrompt: number | null;
 }
 
-export const HomePage = () => {
+export const Home = () => {
   const [questionIdToFetch, setQuestionIdToFetch] = React.useState(1);
   const [include, setInclude] = React.useState<string[]>([]);
   const [exclude, setExclude] = React.useState<string[]>([]);

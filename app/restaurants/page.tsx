@@ -1,5 +1,5 @@
 import { Restaurants } from '@/restaurants';
 
-export default function Page() {
+export default function RestaurantsPage() {
   return <Restaurants />;
 }

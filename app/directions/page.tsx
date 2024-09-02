@@ -1,5 +1,5 @@
 import { NavigationMap } from '@/navigation-map';
 
-export default function Page() {
+export default function DirectionsPage() {
   return <NavigationMap />;
 }

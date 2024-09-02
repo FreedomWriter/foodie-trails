@@ -68,19 +68,22 @@ export const NavigationMap = () => {
       mapRef.current &&
       state.userLocation
     ) {
-      // Import the AdvancedMarkerElement dynamically
-      // @ts-ignore
       const loadMapAndMarkers = async () => {
+        // Import the AdvancedMarkerElement dynamically
+        // @ts-ignore
         const { AdvancedMarkerElement } =
           await google.maps.importLibrary('marker');
-
-        googleMapRef.current = new google.maps.Map(mapRef.current, {
-          center: state.userLocation!,
-          zoom: 17,
-          disableDefaultUI: true,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID,
-        });
+        console.log({ AdvancedMarkerElement });
+        googleMapRef.current = new google.maps.Map(
+          mapRef.current as HTMLDivElement,
+          {
+            center: state.userLocation!,
+            zoom: 17,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID,
+          }
+        );
 
         directionsRendererRef.current = new google.maps.DirectionsRenderer({
           suppressMarkers: true,
