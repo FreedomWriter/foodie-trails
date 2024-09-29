@@ -25,27 +25,13 @@ export const appearance = {
     },
   },
   elements: {
-    card: 'rounded border-2 border-[rgb(0,255,0)] bg-[rgb(0,0,0)] shadow-[4px_4px_0px_rgb(0,255,0)] p-4',
+    card: 'rounded border-2 border-[rgb(0,255,0)] bg-[rgb(0,0,0)]  p-4',
     headerTitle: 'text-4xl font-dos text-[rgb(0,255,0)] mb-6 text-center',
     formButtonPrimary:
-      'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] shadow-[4px_4px_0px_rgb(0,255,0)] uppercase px-5 py-2 font-semibold text-lg',
+      'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)]  uppercase px-5 py-2 font-semibold text-lg',
     formFieldInput:
       'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm shadow-inner placeholder-[rgb(180,180,180)]',
     footer: 'text-[rgb(220,220,220)] text-center mt-4 font-semibold text-lg',
-    userButton: {
-      base: 'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm font-semibold text-lg',
-      hover:
-        'hover:bg-[rgb(0,255,0)] hover:text-[rgb(0,0,0)] hover:border-[rgb(0,0,0)]',
-      focus:
-        'focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,0)] focus:ring-opacity-50',
-    },
-    signInButton: {
-      base: 'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm font-semibold text-lg',
-      hover:
-        'hover:bg-[rgb(0,255,0)] hover:text-[rgb(0,0,0)] hover:border-[rgb(0,0,0)]',
-      focus:
-        'focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,0)] focus:ring-opacity-50',
-    },
     input: {
       base: 'bg-[rgb(0,0,0)] text-[rgb(0,255,0)] border-2 border-[rgb(0,255,0)] p-2 rounded-sm placeholder-[rgb(180,180,180)]',
       focus:
