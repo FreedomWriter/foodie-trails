@@ -29,12 +29,10 @@ export const Home = () => {
     return <Loader />;
   }
 
-  console.log({ discoveryPrompt, questionIdToFetch });
   const onSelect = (option: Option) => {
-    console.log(option);
-
     // Update the include and exclude lists based on the selected option
     if (option.include) {
+      console.log('option.include', option.include);
       setInclude((prevInclude) => [
         ...prevInclude,
         ...option.include!.filter((item) => !prevInclude.includes(item)),
@@ -59,6 +57,7 @@ export const Home = () => {
       if (excludes) {
         result += `${includes ? '&' : '?'}exclude=${excludes}`;
       }
+
       // Navigate to the restaurants page with the query parameters
       router.push(result);
     } else if (questionIdToFetch === 28) {
