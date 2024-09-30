@@ -44,34 +44,48 @@ export const useLoadMap = (
   const createCustomInfoWindowContent = (
     place: google.maps.places.PlaceResult
   ) => {
-    const { name, vicinity, rating, photos, opening_hours } = place;
+    const {
+      name,
+      vicinity,
+      rating,
+      photos,
+      opening_hours,
+      business_status,
+      user_ratings_total,
+    } = place;
     const isOpen = opening_hours?.isOpen() ? 'Open Now' : 'Closed';
 
     return `
-      <div class="info-window">
-        <h2 class="info-window-title">${name}</h2>
-        <p class="info-window-address">${vicinity}</p>
-        ${
-          place.opening_hours
-            ? `<p class="info-window-hours">${isOpen}</p>`
-            : ''
-        }
-        ${
-          photos && photos.length > 0
-            ? `<img src="${photos[0].getUrl({
-                maxWidth: 200,
-                maxHeight: 100,
-              })}" alt="${name}" class="info-window-photo" />`
-            : ''
-        }
-        <button
-          class="primary-button mt-4"
-          id="select-restaurant-button"
-          onclick="window.selectRestaurant()">
-          Select Restaurant
-        </button>
-      </div>
-    `;
+    <div class="info-window">
+      <h2 class="info-window-title">${name}</h2>
+      <p class="info-window-address">${vicinity}</p>
+      ${
+        business_status
+          ? `<p class="info-window-status">${business_status}</p>`
+          : ''
+      }
+      ${place.opening_hours ? `<p class="info-window-hours">${isOpen}</p>` : ''}
+      ${
+        rating
+          ? `<p class="info-window-rating">Rating: ${rating} (${user_ratings_total} reviews)</p>`
+          : ''
+      }
+      ${
+        photos && photos.length > 0
+          ? `<img src="${photos[0].getUrl({
+              maxWidth: 200,
+              maxHeight: 100,
+            })}" alt="${name}" class="info-window-photo" />`
+          : ''
+      }
+      <button
+        class="primary-button mt-4"
+        id="select-restaurant-button"
+        onclick="window.selectRestaurant()">
+        Select Restaurant
+      </button>
+    </div>
+  `;
   };
 
   // Function to handle opening a custom info window for restaurants

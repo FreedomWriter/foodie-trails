@@ -135,6 +135,7 @@ export const createRestaurantMarkerContent = () => {
   markerContent.style.height = '20px';
   markerContent.style.position = 'relative';
   markerContent.style.backgroundColor = 'transparent';
+  markerContent.style.padding = '5px';
 
   const xLine1 = document.createElement('div');
   xLine1.style.position = 'absolute';
